@@ -90,6 +90,19 @@ describe('Hackerbay.io API', () => {
         })
     })
 
+    it('it should return 401 for unathorized access', (done) => {
+      chai
+        .request(server)
+        .post('/api/patch')
+        .set('Authorization', 'Bearer Invalid_token')
+        .end((_err, res) => {
+          res.should.have.status(401)
+          res.body.should.be.a('object')
+          res.body.should.have.a.property('message')
+          done()
+        })
+    })
+
     it('it should return 200 with a patched object', (done) => {
       chai
         .request(server)
