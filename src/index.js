@@ -6,6 +6,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const loginRouter = require('./routes/login');
 const patchRouter = require('./routes/json-patch');
+const authChecker = require('./middleware/checkauth')
 
 // defining the Express app
 const app = express();
@@ -25,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/login', loginRouter);
-app.use('/api/patch', patchRouter);
+app.use('/api/patch', authChecker, patchRouter);
 
 // starting the server
 app.listen(3001, () => {
