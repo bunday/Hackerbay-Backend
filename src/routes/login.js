@@ -1,13 +1,18 @@
+// Dependencies
 const express = require("express");
 var payloadChecker = require("payload-validator");
 const jwt = require("jsonwebtoken");
+
+// expected parameters for validator
 var expectedPayload = {
   username: "",
   password: "",
 };
 const router = express.Router();
+// getting gwt passcode from env
 const jwtPasscode = process.env.JWT_TOKEN;
 router.post("", (req, res) => {
+    // validating sent data
   var result = payloadChecker.validator(
     req.body,
     expectedPayload,
@@ -15,6 +20,7 @@ router.post("", (req, res) => {
     false
   );
   if (result.success) {
+      // signing token with credentials and returning to user
     const token = jwt.sign(
       {
         ...req.body,
@@ -27,6 +33,7 @@ router.post("", (req, res) => {
       token
     });
   } else {
+    // validator failed
     res.status(400).json({
       message: "Username and Password is required",
     });
