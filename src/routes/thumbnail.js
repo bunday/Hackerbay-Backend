@@ -21,10 +21,16 @@ router.post("", async (req, res) => {
     // try to send to the module with the functionality
     try {
       const path = `public/image/${Date.now()}.jpg`;
-      await request(req.body.link).pipe(fs.createWriteStream(path));
-      const image = await jimp.read(path);
-      await image.resize(50, 50);
-      await image.writeAsync(path);
+      //await request(req.body.link).pipe(fs.createWriteStream(path));
+      request.head(req.body.link,() => {
+          request(req.body.link).pipe(fs.createWriteStream(path))
+          .on('close', async () => {
+            const image = await jimp.read(path);
+            await image.resize(50, 50);
+            await image.writeAsync(path);
+          })
+      })
+      
 
       res.status(200).json({ path });
     } catch (error) {
