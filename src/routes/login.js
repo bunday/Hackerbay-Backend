@@ -35,7 +35,7 @@ router.post("", (req, res) => {
   } else {
     // validator failed
     res.status(400).json({
-      message: "Username and Password is required",
+      error: "Username and Password is required",
     });
   }
 });
