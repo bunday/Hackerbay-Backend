@@ -29,6 +29,8 @@ app.get('/', (req, res) => {
 app.use('/api/login', loginRouter);
 app.use('/api/patch', authChecker, patchRouter);
 app.use('/api/thumbnail', imageRouter);
+
+app.use('/', express.static('public'))
 // starting the server
 app.listen(3001, () => {
   console.log('listening on port 3001');

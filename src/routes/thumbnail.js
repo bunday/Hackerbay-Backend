@@ -20,19 +20,22 @@ router.post("", async (req, res) => {
   if (result.success) {
     // try to send to the module with the functionality
     try {
-      const path = `public/image/${Date.now()}.jpg`;
-      //await request(req.body.link).pipe(fs.createWriteStream(path));
-      request.head(req.body.link,() => {
-          request(req.body.link).pipe(fs.createWriteStream(path))
-          .on('close', async () => {
+      const tag = `${Date.now()}.jpg`;
+      const path = `public/image/${tag}`;
+      request.head(req.body.link, () => {
+        request(req.body.link)
+          .pipe(fs.createWriteStream(path))
+          .on("close", async () => {
             const image = await jimp.read(path);
             await image.resize(50, 50);
             await image.writeAsync(path);
-          })
-      })
-      
-
-      res.status(200).json({ path });
+          });
+      });
+      const baseUrl = req.protocol + "://" + req.headers.host;
+      const link = `${baseUrl}/image/${tag}`;
+      res
+        .status(200)
+        .json({ message: "Thumbnail, Generated Successfully", link });
     } catch (error) {
       //failure return with error
       res.status(400).json({
