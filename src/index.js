@@ -28,7 +28,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/login', loginRouter);
 app.use('/api/patch', authChecker, patchRouter);
-app.use('/api/thumbnail', imageRouter);
+app.use('/api/thumbnail', authChecker, imageRouter);
 
 app.use('/', express.static('public'))
 // starting the server
