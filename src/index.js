@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const loginRouter = require('./routes/login');
 const patchRouter = require('./routes/json-patch');
 const authChecker = require('./middleware/checkauth')
+const imageRouter = require('./routes/thumbnail');
 
 // defining the Express app
 const app = express();
@@ -27,7 +28,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/login', loginRouter);
 app.use('/api/patch', authChecker, patchRouter);
-
+app.use('/api/thumbnail', imageRouter);
 // starting the server
 app.listen(3001, () => {
   console.log('listening on port 3001');
