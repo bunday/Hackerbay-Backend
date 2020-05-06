@@ -4,6 +4,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const morgan = require('morgan');
+const loginRouter = require('./routes/login');
 
 // defining the Express app
 const app = express();
@@ -21,6 +22,8 @@ app.use(morgan('combined'));
 app.get('/', (req, res) => {
   res.send('ads');
 });
+
+app.use('/api/login', loginRouter);
 
 // starting the server
 app.listen(3001, () => {
