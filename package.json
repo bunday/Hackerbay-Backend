@@ -23,6 +23,7 @@
     "request": "^2.88.2"
   },
   "devDependencies": {
+    "mocha": "^7.1.2",
     "nodemon": "^2.0.3"
   }
 }
