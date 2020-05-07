@@ -13,8 +13,8 @@ const imageRouter = require('./routes/thumbnail')
 const app = express()
 const config = {
   name: 'hackerbay-backend',
-  port: 3001,
-  host: '0.0.0.0'
+  port: process.env.APP_PORT,
+  host: process.env.APP_HOST
 }
 
 // using bodyParser to parse JSON bodies into JS objects

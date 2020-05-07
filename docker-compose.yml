@@ -6,7 +6,7 @@ services:
     networks:
       - backend
     ports:
-      - "3001:3001"
+      - "4000:4000"
 
   web-cli:
     image: hackerbay-backend
