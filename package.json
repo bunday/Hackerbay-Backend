@@ -6,6 +6,7 @@
   "scripts": {
     "test": "mocha --timeout 10000",
     "dev": "nodemon src/index.js",
+    "start": "node src/index.js",
     "test-coverage": "istanbul cover test/test.js",
     "docs": "./node_modules/.bin/jsdoc -c jsdoc.json"
   },

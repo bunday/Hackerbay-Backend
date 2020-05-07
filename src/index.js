@@ -11,6 +11,11 @@ const imageRouter = require('./routes/thumbnail')
 
 // defining the Express app
 const app = express()
+const config = {
+  name: 'hackerbay-backend',
+  port: 3001,
+  host: '0.0.0.0'
+}
 
 // using bodyParser to parse JSON bodies into JS objects
 app.use(bodyParser.json())
@@ -23,7 +28,7 @@ app.use(morgan('combined'))
 
 // defining an endpoint to return something
 app.get('/', (req, res) => {
-  res.send('ads')
+  res.send('hello 🎉')
 })
 
 app.use('/api/login', loginRouter)
@@ -32,8 +37,8 @@ app.use('/api/thumbnail', authChecker, imageRouter)
 
 app.use('/', express.static('public'))
 // starting the server
-app.listen(3001, () => {
-  console.log('listening on port 3001')
+app.listen(config.port, config.host, () => {
+  console.log(`listening on port ${config.port}`)
 })
 
 module.exports = app
