@@ -1,7 +1,7 @@
 {
   "name": "hackerbay-backend",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hackerbay Backend Interview",
   "main": "src/index.js",
   "scripts": {
     "test": "mocha --timeout 10000",
@@ -11,7 +11,8 @@
     "docs": "./node_modules/.bin/jsdoc -c jsdoc.json"
   },
   "keywords": [],
-  "author": "",
+  "author": "Zadat Olayinka",
+  "repository": "https://github.com/bunday/Hackerbay-Backend",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
