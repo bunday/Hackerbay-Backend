@@ -24,6 +24,13 @@ docker-compose build
 docker-compose up
 ```
 
+Available API Endpoints:
+```bash
+/api/login body: (username,password)
+/api/patch body: (content,operation)
+/api/thumbnail body: (link)
+```
+
 
 ## LICENSE
 
